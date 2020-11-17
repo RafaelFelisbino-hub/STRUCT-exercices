@@ -26,7 +26,7 @@ int main()
 	for (i = 0; i < 5; i++)
 	{
 		printf("Digite o nome do aluno:  ");
-		scanf_s("%s", &alunos[i].nome, 20);
+		scanf_s("%[^\n]s", &alunos[i].nome, 20);
 
 		printf("Digite a nota da primeira prova:  ");
 		scanf_s("%f", &alunos[i].notaProva1);
@@ -44,13 +44,19 @@ int main()
 		}
 
 		somaNotas[i] += alunos[i].notaProva1 + alunos[i].notaProva2 + alunos[i].notaProva3;
+		mediaGeral[i] = somaNotas[i] / 3;
 
+		if (mediaGeral[i] > 6)
+			printf("Aluno aprovado\n");
+		else
+			printf("Aluno reprovado\n");
+
+		getchar();
+		system("pause");
 		system("cls");
 	}
 	for (i = 0; i < 5; i++) 
 	{
-		mediaGeral[i] = somaNotas[i] / 3;
-
 		if (mediaGeral[i]> notaGeralMaior)
 		{
 			notaGeralMaior = mediaGeral[i];
