@@ -1,4 +1,4 @@
-﻿/*Crie uma estrutura representando os alunos de um determinado curso. 
+/*Crie uma estrutura representando os alunos de um determinado curso. 
 A estrutura deveconter a matrıcula do aluno, nome, nota da primeira prova, nota da segunda prova e nota da terceira prova.(a)  
 Permita ao usuario entrar com os dados de 5 alunos.(b)  Encontre o aluno com maior nota da primeira prova.(c)  
 Encontre o aluno com maior media geral.(d)  Encontre o aluno com menor media geral(e)  
@@ -19,7 +19,7 @@ typedef struct
 int main() 
 {
 	TipoAlunos alunos[5];
-	float  somaNotas[5] = { 0,0,0,0,0 }, notaGeralMaior = 0, notaGeralMenor = 999, notaMaiorProva1 = 0;
+	float  somaNotas[5] = { 0,0,0,0,0 }, notaGeralMaior = 0, notaGeralMenor = 999, notaMaiorProva1 = 0, mediaGeral[5];
 	char nomeMaior[20], nomeMenor[20], nomeMaiorNotaProva1[20];
 	int i;
 
@@ -45,18 +45,22 @@ int main()
 
 		somaNotas[i] += alunos[i].notaProva1 + alunos[i].notaProva2 + alunos[i].notaProva3;
 
-		if (somaNotas[i] > notaGeralMaior)
-		{
-			notaGeralMaior = somaNotas[i];
-			strcpy_s(nomeMaior,20, alunos[i].nome);
-		}
-		if (somaNotas[i] < notaGeralMenor) 
-		{
-			notaGeralMenor = somaNotas[i];
-			strcpy_s(nomeMenor,20, alunos[i].nome);
-		}
-
 		system("cls");
+	}
+	for (i = 0; i < 5; i++) 
+	{
+		mediaGeral[i] = somaNotas[i] / 3;
+
+		if (mediaGeral[i]> notaGeralMaior)
+		{
+			notaGeralMaior = mediaGeral[i];
+			strcpy_s(nomeMaior, 20, alunos[i].nome);
+		}
+		if (mediaGeral[i] < notaGeralMenor)
+		{
+			notaGeralMenor = mediaGeral[i];
+			strcpy_s(nomeMenor, 20, alunos[i].nome);
+		}
 	}
 
 	printf("Aluno com maior nota da primeira prova %s = %.2f\n", nomeMaiorNotaProva1, notaMaiorProva1);
